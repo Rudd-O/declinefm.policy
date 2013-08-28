@@ -7,9 +7,9 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="declinefm.policy"
+      title="Decline to State site policy"
       directory="profiles/default"
-      description="Installs the declinefm.policy package"
+      description="Turns a site into the Decline to State site"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   <!-- -*- extra stuff goes here -*- -->
