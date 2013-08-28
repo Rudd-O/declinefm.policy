@@ -5,6 +5,8 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="declinefm.policy">
 
+  <includeDependencies package='.' />
+
   <genericsetup:registerProfile
       name="default"
       title="Decline to State site policy"
