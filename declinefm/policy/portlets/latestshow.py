@@ -73,6 +73,7 @@ class Renderer(base.Renderer):
 
     def __init__(self, *args, **kwargs):
         base.Renderer.__init__(self, *args, **kwargs)
+        self.archives_item = getSite()["archives"]["feed"].queryCatalog(batch=True, b_size=1)[0].getObject()
         self.archives_url = getSite()["archives"].absolute_url()
         self.archives_rss_url = self.archives_url + "/feed/itunes.xml"
         self.archives_itunes_url = "itpc:" + self.archives_url.split(":",1)[1] + "/feed/itunes.xml"

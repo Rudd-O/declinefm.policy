@@ -73,6 +73,7 @@ class Renderer(base.Renderer):
 
     def __init__(self, *args, **kwargs):
         base.Renderer.__init__(self, *args, **kwargs)
+        self.news_item = getSite()["news"]["feed"].queryCatalog(batch=True, b_size=1)[0].getObject()
         self.news_url = getSite()["news"].absolute_url()
         self.news_rss_url = self.news_url + "/feed/RSS"
 

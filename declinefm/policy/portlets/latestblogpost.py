@@ -73,6 +73,7 @@ class Renderer(base.Renderer):
 
     def __init__(self, *args, **kwargs):
         base.Renderer.__init__(self, *args, **kwargs)
+        self.blog_item = getSite()["blog"]["feed"].queryCatalog(batch=True, b_size=1)[0].getObject()
         self.blog_url = getSite()["blog"].absolute_url()
         self.blog_rss_url = self.blog_url + "/feed/RSS"
 

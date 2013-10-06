@@ -1,16 +1,36 @@
 <dl class="portlet portletLatestNews"
-    i18n:domain="declinefm.policy">
+    i18n:domain="declinefm.policy"
+    tal:define="collection_url view/news_url;
+                obj python:view.news_item;
+                plone_view context/@@plone;
+                toLocalizedTime nocall:plone_view/toLocalizedTime;">
 
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
-        <span>
-           Latest news
-        </span>
+        <a tal:attributes="href collection_url">
+            Latest news
+        </a>
         <span class="portletTopRight"></span>
     </dt>
 
-    <dd class="portletItem odd">
-        Body text
+    <dd class="portletItem"
+        tal:define="itemUrl python:obj.absolute_url();
+                    normalizeString nocall:plone_view/normalizeString;"
+        tal:attributes="class python:'portletItem odd'">
+        <a href="#"
+           tal:attributes="href itemUrl;
+                           class python:'tile contenttype-' + normalizeString(obj.portal_type);">
+            <span tal:replace="obj/title_or_id">
+             Title
+            </span>
+        </a>
+            <span class="portletItemDetails"
+                  tal:content="python:toLocalizedTime(obj.getEffectiveDate())">
+                Date
+            </span>
+            <span tal:replace="obj/Description">
+             Title
+            </span>
     </dd>
 
     <dd class="portletFooter">
