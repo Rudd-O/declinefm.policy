@@ -16,7 +16,11 @@
     <dd class="portletFooter">
         <span class="portletBottomLeft"></span>
         <span>
-           RSS | Listen | More shows
+          <a href="#" tal:attributes="href view/archives_rss_url" title="Add the Decline to State  show to your newsreader or podcatcher">RSS</a>
+          |
+          <a href="#" tal:attributes="href view/archives_itunes_url" title="Subscribe to the Decline to State show via iTunes">iTunes</a>
+          |
+          <a href="#" tal:attributes="href view/archives_url" title="Enjoy previous Decline to State shows">More shows</a>
         </span>
         <span class="portletBottomRight"></span>
     </dd>

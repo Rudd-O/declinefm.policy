@@ -16,7 +16,9 @@
     <dd class="portletFooter">
         <span class="portletBottomLeft"></span>
         <span>
-           FIXME
+          <a href="#" tal:attributes="href view/blog_rss_url" title="Add the Decline to State blog to your newsreader">RSS</a>
+          |
+          <a href="#" tal:attributes="href view/blog_url" title="See older Decline to State blog posts">More posts</a>
         </span>
         <span class="portletBottomRight"></span>
     </dd>

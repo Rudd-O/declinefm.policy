@@ -71,6 +71,11 @@ class Renderer(base.Renderer):
 
     render = ViewPageTemplateFile('latestblogpost.pt')
 
+    def __init__(self, *args, **kwargs):
+        base.Renderer.__init__(self, *args, **kwargs)
+        self.blog_url = getSite()["blog"].absolute_url()
+        self.blog_rss_url = self.blog_url + "/feed/RSS"
+
     @property
     def available(self):
         return self.context.__class__ != getSite().__class__ and not self.context.absolute_url().endswith("blog/feed")

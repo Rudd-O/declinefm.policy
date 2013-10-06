@@ -13,6 +13,8 @@ from declinefm.policy import policyMessageFactory as _
 from zope.i18nmessageid import MessageFactory
 __ = MessageFactory("plone")
 
+from zope.component.hooks import getSite
+
 class ILatestShow(IPortletDataProvider):
     """A portlet
 
@@ -68,6 +70,12 @@ class Renderer(base.Renderer):
     """
 
     render = ViewPageTemplateFile('latestshow.pt')
+
+    def __init__(self, *args, **kwargs):
+        base.Renderer.__init__(self, *args, **kwargs)
+        self.archives_url = getSite()["archives"].absolute_url()
+        self.archives_rss_url = self.archives_url + "/feed/itunes.xml"
+        self.archives_itunes_url = "itpc:" + self.archives_url.split(":",1)[1] + "/feed/itunes.xml"
 
     @property
     def available(self):

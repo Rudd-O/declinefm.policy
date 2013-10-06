@@ -13,6 +13,8 @@ from declinefm.policy import policyMessageFactory as _
 from zope.i18nmessageid import MessageFactory
 __ = MessageFactory("plone")
 
+from zope.component.hooks import getSite
+
 class ILatestNews(IPortletDataProvider):
     """A portlet
 
@@ -68,6 +70,11 @@ class Renderer(base.Renderer):
     """
 
     render = ViewPageTemplateFile('latestnews.pt')
+
+    def __init__(self, *args, **kwargs):
+        base.Renderer.__init__(self, *args, **kwargs)
+        self.news_url = getSite()["news"].absolute_url()
+        self.news_rss_url = self.news_url + "/feed/RSS"
 
     @property
     def available(self):
