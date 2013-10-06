@@ -2,4 +2,5 @@
 <site>
   <property name="title">Decline to State radio</property>
   <property name="description">The stateless radio show in which we get together to discuss the ins-and-outs of life outside the Matrix — voluntaryism, non-aggression, and mutually beneficial cooperation.</property>
+  <property name="layout">custom_frontpage_view</property>
 </site>
