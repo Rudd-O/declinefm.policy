@@ -73,14 +73,17 @@ class Renderer(base.Renderer):
 
     def __init__(self, *args, **kwargs):
         base.Renderer.__init__(self, *args, **kwargs)
-        self.archives_item = getSite()["archives"]["feed"].queryCatalog(batch=True, b_size=1)[0].getObject()
+        try:
+            self.archives_item = getSite()["archives"]["feed"].queryCatalog(batch=True, b_size=1)[0].getObject()
+        except IndexError:
+            self.archives_item = None
         self.archives_url = getSite()["archives"].absolute_url()
         self.archives_rss_url = self.archives_url + "/feed/itunes.xml"
         self.archives_itunes_url = "itpc:" + self.archives_url.split(":",1)[1] + "/feed/itunes.xml"
 
     @property
     def available(self):
-        return not self.context.absolute_url().endswith("archives/feed")
+        return self.archives_item and not self.context.absolute_url().endswith("archives/feed")
 
 
 # NOTE: If this portlet does not have any configurable parameters, you can

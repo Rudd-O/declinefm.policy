@@ -73,13 +73,16 @@ class Renderer(base.Renderer):
 
     def __init__(self, *args, **kwargs):
         base.Renderer.__init__(self, *args, **kwargs)
-        self.news_item = getSite()["news"]["feed"].queryCatalog(batch=True, b_size=1)[0].getObject()
+        try:
+            self.news_item = getSite()["news"]["feed"].queryCatalog(batch=True, b_size=1)[0].getObject()
+        except IndexError:
+            self.news_item = None
         self.news_url = getSite()["news"].absolute_url()
         self.news_rss_url = self.news_url + "/feed/RSS"
 
     @property
     def available(self):
-        return not self.context.absolute_url().endswith("news/feed")
+        return self.news_item and not self.context.absolute_url().endswith("news/feed")
 
 
 # NOTE: If this portlet does not have any configurable parameters, you can
